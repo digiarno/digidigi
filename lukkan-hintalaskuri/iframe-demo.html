@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WordPress-iframe-esimerkki | Lukkan hintalaskuri</title>
+  <style>
+    body { margin: 0; font-family: Inter, sans-serif; background: #fff; color: #003568; }
+    main { max-width: 960px; margin: 0 auto; padding: 32px 20px 60px; }
+    h1 { font-family: "IBM Plex Serif", serif; font-weight: 500; }
+    iframe { width: 100%; border: 0; min-height: 1100px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Iframe-upotus (WordPress-esimerkki)</h1>
+    <p>Näin laskuri upotetaan sivulle iframe-kehyksessä. Korkeus päivittyy automaattisesti.</p>
+    <iframe id="lukkan-hintalaskuri" src="embed.html" title="Lukkan hintalaskuri"></iframe>
+  </main>
+  <script>
+    window.addEventListener("message", function (event) {
+      if (!event.data || event.data.type !== "lukkan-hintalaskuri-height") return;
+      var frame = document.getElementById("lukkan-hintalaskuri");
+      if (frame) frame.style.height = event.data.height + "px";
+    });
+  </script>
+</body>
+</html>
