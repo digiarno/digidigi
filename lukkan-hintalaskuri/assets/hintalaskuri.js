@@ -113,10 +113,10 @@
     var max = Math.max(w, d);
     var boxW = 220;
     var boxH = 140;
-    var scale = Math.min((boxW - 40) / w, (boxH - 36) / d);
+    var scale = Math.min((boxW - 56) / w, (boxH - 40) / d);
     var rw = w * scale;
     var rh = d * scale;
-    var x = (boxW - rw) / 2;
+    var x = (boxW - rw) / 2 - 8;
     var y = 18;
     var house = qs(svg, "[data-house]");
     var glass = qs(svg, "[data-glass]");

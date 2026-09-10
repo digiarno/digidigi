@@ -140,9 +140,9 @@ if (!isset($logo_url)) {
               <rect x="0" y="0" width="220" height="170" fill="#f5f5f2"></rect>
               <text x="110" y="12" text-anchor="middle" fill="#003568" font-size="9" font-family="Inter, sans-serif">Talo</text>
               <rect data-house x="20" y="18" width="180" height="10" fill="#003568"></rect>
-              <rect data-glass x="20" y="28" width="180" height="90" fill="#4f79ab" fill-opacity="0.28" stroke="#003568" stroke-width="2"></rect>
-              <text data-label-w x="110" y="138" text-anchor="middle" fill="#003568" font-size="11" font-family="Inter, sans-serif">4,0 m</text>
-              <text data-label-d x="208" y="78" text-anchor="start" fill="#003568" font-size="11" font-family="Inter, sans-serif">3,0 m</text>
+              <rect data-glass x="20" y="28" width="160" height="90" fill="#4f79ab" fill-opacity="0.28" stroke="#003568" stroke-width="2"></rect>
+              <text data-label-w x="100" y="138" text-anchor="middle" fill="#003568" font-size="11" font-family="Inter, sans-serif">4,0 m</text>
+              <text data-label-d x="188" y="78" text-anchor="start" fill="#003568" font-size="11" font-family="Inter, sans-serif">3,0 m</text>
             </svg>
           </div>
         </section>
