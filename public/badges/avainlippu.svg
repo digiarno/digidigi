@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+  <circle cx="40" cy="40" r="38" fill="#003568"/>
+  <path d="M40 14l9 18 4-2 8 22h-12l-9-20-9 20H19l8-22 4 2z" fill="#9dcf58"/>
+  <text x="40" y="64" text-anchor="middle" font-size="9" fill="#fff" font-family="Inter,sans-serif">AVAINLIPPU</text>
+</svg>
