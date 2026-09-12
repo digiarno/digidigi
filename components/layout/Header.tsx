@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { a11y, navItems } from "@/config/site-content";
+import { a11y, homeContent, navItems } from "@/config/site-content";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
 
@@ -25,7 +25,7 @@ export function Header() {
           ))}
         </nav>
         <div className="hidden lg:block">
-          <Button href="/yhteystiedot">Pyydä tarjous</Button>
+          <Button href={homeContent.hero.primaryCta.href}>{homeContent.hero.primaryCta.label}</Button>
         </div>
         <button
           type="button"
@@ -55,8 +55,8 @@ export function Header() {
               </li>
             ))}
             <li>
-              <Button href="/yhteystiedot" className="w-full">
-                Pyydä tarjous
+              <Button href={homeContent.hero.primaryCta.href} className="w-full">
+                {homeContent.hero.primaryCta.label}
               </Button>
             </li>
           </ul>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { formContent, homeContent } from "@/config/site-content";
+import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/Button";
 import { FormField, fieldControlClass } from "@/components/ui/FormField";
 import { SectionContainer } from "@/components/ui/SectionContainer";
@@ -139,13 +140,13 @@ export function ContactForm({ nested = false }: { nested?: boolean }) {
       <div className="grid gap-10 lg:grid-cols-2">
         <div className="glass-card rounded-3xl p-6 md:p-8">{form}</div>
         <aside className="rounded-3xl bg-navy p-8 text-white">
-          <h3 className="font-display text-3xl">Aluroll Oy</h3>
+          <h3 className="font-display text-3xl">{siteConfig.legalName}</h3>
           <p className="mt-4 leading-relaxed text-white/80">
-            Metallikatu 1
+            {siteConfig.address.street}
             <br />
-            15160 Lahti
+            {siteConfig.address.postalCode} {siteConfig.address.city}
             <br />
-            0291 230 221
+            {siteConfig.phoneDisplay}
           </p>
         </aside>
       </div>
