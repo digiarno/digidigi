@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { homeContent } from "@/config/site-content";
 import { FaqList } from "@/components/sections/FaqList";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -57,7 +58,7 @@ export default async function ProductPage({ params }: Props) {
               <h1 className="mt-4 font-display text-4xl md:text-6xl">{product.h1}</h1>
               <p className="mt-6 text-lg text-white/75">{product.description}</p>
               <div className="mt-8">
-                <Button href="/yhteystiedot">Pyydä tarjous</Button>
+                <Button href={homeContent.hero.primaryCta.href}>{homeContent.hero.primaryCta.label}</Button>
               </div>
             </div>
             <div className="relative min-h-72 overflow-hidden rounded-3xl">
