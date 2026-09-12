@@ -74,8 +74,10 @@ export function ResellerMap({ resellers }: { resellers: Reseller[] }) {
 
   if (!key) {
     return (
-      <div className="flex min-h-[420px] items-center justify-center rounded-3xl bg-[radial-gradient(circle_at_30%_20%,#4f79ab33,transparent_45%),linear-gradient(180deg,#16191e,#012544)] p-8 text-white">
-        <p className="max-w-md text-sm leading-relaxed text-white/80">{resellersContent.mapFallback}</p>
+      <div className="flex min-h-[420px] flex-col justify-start gap-4 rounded-3xl bg-gradient-to-br from-charcoal to-navy-deep p-8 text-white">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cta">Kartta</p>
+        <p className="max-w-md text-sm leading-relaxed text-white/85">{resellersContent.mapFallback}</p>
+        <p className="text-sm text-white/60">{resellers.length} toimipistettä listassa.</p>
       </div>
     );
   }

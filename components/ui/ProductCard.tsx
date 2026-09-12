@@ -20,7 +20,7 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="flex flex-1 flex-col gap-3 p-6">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">{product.category}</p>
         <h3 className="font-display text-2xl text-ink">{product.name}</h3>
-        <p className="text-sm leading-relaxed text-muted">{product.excerpt}</p>
+        <p className="text-sm leading-relaxed text-muted line-clamp-3">{product.excerpt}</p>
         <span className="mt-auto pt-2 text-sm font-semibold text-navy">Lue lisää →</span>
       </div>
     </Link>

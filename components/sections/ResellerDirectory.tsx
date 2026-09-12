@@ -51,11 +51,13 @@ export function ResellerDirectory({ resellers }: { resellers: Reseller[] }) {
         ) : null}
         {results.length === 0 ? <p>{resellersContent.empty}</p> : null}
         <div className="space-y-8">
-          {[...groups.entries()].map(([region, list]) => (
+          {[...groups.keys()]
+            .sort((a, b) => a.localeCompare(b, "fi"))
+            .map((region) => (
             <section key={region}>
               <h2 className="mb-3 font-display text-2xl">{region}</h2>
               <ul className="space-y-3">
-                {list.map((reseller) => (
+                {(groups.get(region) ?? []).map((reseller) => (
                   <ResellerCard key={reseller.id} reseller={reseller} />
                 ))}
               </ul>
