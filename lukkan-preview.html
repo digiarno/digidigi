@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lukkan – Suomalaiset terassilasit</title>
+  <style>
+    :root {
+      --navy: #003568;
+      --navy-deep: #012544;
+      --charcoal: #16191e;
+      --ink: #1c1f24;
+      --mist: #f4f5f2;
+      --fog: #e8e9e4;
+      --cta: #9dcf58;
+      --cta-hover: #8cb84e;
+      --accent: #4f79ab;
+      --muted: #5d6168;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--mist);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      font-family: 'IBM Plex Serif', Georgia, serif;
+      line-height: 1.2;
+    }
+
+    a {
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(22, 25, 30, 0.8);
+      backdrop-filter: blur(20px);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--cta);
+      color: var(--ink);
+      box-shadow: 0 10px 30px rgba(157, 207, 88, 0.28);
+    }
+
+    .btn-primary:hover {
+      background: var(--cta-hover);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 86vh;
+      background: linear-gradient(135deg, #16191e 0%, #003568 50%, #4f79ab 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 5rem 1.5rem;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cta);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.05;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Section */
+    section {
+      padding: 4rem 1.5rem;
+    }
+
+    .section-dark {
+      background: var(--charcoal);
+      color: #fff;
+    }
+
+    .section-white {
+      background: #fff;
+    }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+    }
+
+    .section-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-lead {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .section-dark .section-lead {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    /* Card */
+    .card {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card-dark {
+      background: var(--charcoal);
+      color: #fff;
+    }
+
+    .card-glass {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: var(--charcoal);
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Highlights */
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .highlight-item {
+      border-radius: 1.5rem;
+      background: var(--charcoal);
+      color: #fff;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .highlight-item h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Trust */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .trust-card {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(18px);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      color: #fff;
+    }
+
+    .trust-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .trust-card p {
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.6;
+    }
+
+    /* Products */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #16191e 0%, #003568 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 2rem;
+    }
+
+    .product-info {
+      padding: 1.5rem;
+    }
+
+    .product-category {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-name {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    details {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(16px);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      cursor: pointer;
+    }
+
+    summary {
+      font-family: 'IBM Plex Serif', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ink);
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details[open] summary {
+      margin-bottom: 1rem;
+    }
+
+    details p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* Form */
+    .contact-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid rgba(0, 53, 104, 0.15);
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 1rem;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--navy-deep);
+      color: #fff;
+      padding: 4rem 1.5rem 2rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-col h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-col a {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .contact-section {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">Lukkan</div>
+      <nav>
+        <a href="#tuotteet">Tuotteet</a>
+        <a href="#jalleenmyyjat">Jälleenmyyjät</a>
+        <a href="#blogi">Blogi</a>
+        <a href="#yhteystiedot">Yhteystiedot</a>
+      </nav>
+      <button class="btn btn-primary">Pyydä tarjous</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Suomalaiset terassilasit · valmistettu Lahdessa</div>
+      <h1>Lisää tilaa elämäsi tärkeimmille asioille</h1>
+      <p>Lukkan-terassilasit valmistetaan Suomessa ja suunnitellaan mittatilaustyönä jokaiseen kohteeseen. Toimiva ja tyylikäs lasitus tuo terassille lisää suojaa ja pidentää sen käyttöaikaa.</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Pyydä tarjous</button>
+        <button class="btn btn-secondary">Tutustu tuotteisiin</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="section-white">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Löydä terassillesi sopiva lasitusratkaisu</h2>
+        <p class="section-lead">Lukkanin terassilasit suunnitellaan erilaisiin terasseihin ja käyttötarpeisiin. Tutustu vaihtoehtoihin ja löydä kohteeseesi sopiva lasitusratkaisu.</p>
+      </div>
+      <div class="highlights">
+        <div class="highlight-item">
+          <h3>Terassilasitukset</h3>
+          <p>Lukkanin lasitusratkaisut valjastavat terassisi tilaksi, jota voit hyödyntää ympäri vuoden.</p>
+        </div>
+        <div class="highlight-item">
+          <h3>Parvekelasitukset</h3>
+          <p>Parvekelasitukset suojaavat tuulelta, sateelta ja lumelta. Ne ovat lisäksi turvalliset, kestävät ja tyylikkäät.</p>
+        </div>
+        <div class="highlight-item">
+          <h3>Lasiterassikokonaisuudet</h3>
+          <p>Runko, katto ja liukulasit samasta suomalaisesta järjestelmästä – valmis tila pihaan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust -->
+  <section class="section-dark">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Kotimainen valmistaja</div>
+        <h2 class="section-title">Miksi valita Lukkan?</h2>
+        <p class="section-lead">Aluroll Oy valmistaa Lukkan-lasituksia Metallikadulla Lahdessa. Jälleenmyyntiketju palvelee Hangosta Nuorgamiin.</p>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-card">
+          <h3>Mittatilaus jokaiseen kohteeseen</h3>
+          <p>Profiilit, lasipaksuudet ja lukitukset valitaan terassin mittojen ja käyttötavan mukaan.</p>
+        </div>
+        <div class="trust-card">
+          <h3>CE-merkityt lasijärjestelmät</h3>
+          <p>Tuulenpaine, iskunkestävyys ja turvalasi on testattu. Karkaistu lasi hajoaa tylppäreunaisiksi siruiksi.</p>
+        </div>
+        <div class="trust-card">
+          <h3>Koko Suomen jälleenmyynti</h3>
+          <p>Paikallinen asentaja mittaa, tarjoaa ja asentaa. Me valmistamme, jälleenmyyjä palvelee.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="section-white" id="tuotteet">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Tuotevalikoima</div>
+        <h2 class="section-title">Terassilasit, lasiterassit ja kaiteet</h2>
+        <p class="section-lead">Neljä tuoteryhmää, yksi suomalainen valmistaja. Valitse järjestelmä käyttötavan mukaan.</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image">🪟</div>
+          <div class="product-info">
+            <div class="product-category">Terassilasit</div>
+            <h3 class="product-name">Lukkan Aava</h3>
+            <p class="product-desc">Moderni pystypuitteellinen liukulasi. Pyöristetyillä profiileilla suuret luukut.</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">🪟</div>
+          <div class="product-info">
+            <div class="product-category">Terassilasit</div>
+            <h3 class="product-name">Lukkan Tyyni</h3>
+            <p class="product-desc">Pystypuitteeton liukulasi. Mahdollisimman avoin näkymä ilman vertikaalilinjoja.</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">❄️</div>
+          <div class="product-info">
+            <div class="product-category">Terassilasit</div>
+            <h3 class="product-name">Lukkan Termo</h3>
+            <p class="product-desc">Eristyslasi viherhuoneisiin. Kaksinkertainen lasi lämpösuojaan.</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">🏠</div>
+          <div class="product-info">
+            <div class="product-category">Lasiterassit</div>
+            <h3 class="product-name">Lasiterassikokonaisuus</h3>
+            <p class="product-desc">Runko, katto ja lasit yhteensopivana kokonaisuutena.</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">🏘️</div>
+          <div class="product-info">
+            <div class="product-category">Parvekelasitus</div>
+            <h3 class="product-name">Parvekelasitus</h3>
+            <p class="product-desc">Suoja tuulelta, sateelta ja lumelta. Kestävä ja turvallinen.</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-image">🪟</div>
+          <div class="product-info">
+            <div class="product-category">Kaiteet</div>
+            <h3 class="product-name">Lasikaiteet</h3>
+            <p class="product-desc">LP-lasikaide terassille. Turvallisuus ilman visuaalista painoa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Buy -->
+  <section class="section-white">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Näin ostat terassilasituksen</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card card-dark">
+          <div class="card-content">
+            <h3>01 Löydä jälleenmyyjä</h3>
+            <p>Hae postinumerolla tai kaupungilla. Paikallinen osaaja mittaa kohteen.</p>
+          </div>
+        </div>
+        <div class="card card-dark">
+          <div class="card-content">
+            <h3>02 Valitse järjestelmä</h3>
+            <p>Puitteellinen, puitteeton tai eristyslasi – valinta tehdään käytön mukaan.</p>
+          </div>
+        </div>
+        <div class="card card-dark">
+          <div class="card-content">
+            <h3>03 Pyydä tarjous</h3>
+            <p>Jätä tarjouspyyntö. Saat asennetun hinta-arvion ja tarkan tarjouksen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-white">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Usein kysyttyä</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Mitä eroa on puitteellisella ja puitteettomalla terassilasilla?</summary>
+          <p>Puitteellisessa liukulasissa (Aava, GL) pystypuitteet tiivistävät luukut toisiinsa ja antavat paremman suojan tuulta, sadetta ja ääntä vastaan. Puitteeton Tyyni jättää näkymän avoimeksi: lasiluukut liukuvat ilman pystypuitteita, ja lasipaksuus on 6–10 mm. Valinta riippuu siitä, haluatko maksimaalisen säänsuojan vai mahdollisimman esteettömän maiseman.</p>
+        </details>
+        <details>
+          <summary>Sopivatko Lukkan-terassilasit ympärivuotiseen käyttöön?</summary>
+          <p>Kyllä. Liukulasitus suojaa lumelta, sateelta, tuulelta ja pölyltä ja pidentää terassin käyttöaikaa. Puolilämpimään viherhuoneeseen suosittelemme Termo-eristyslasia, jossa on kaksinkertainen lasi ja kylmäkatkaistut profiilit.</p>
+        </details>
+        <details>
+          <summary>Missä Lukkan-terassilasit valmistetaan?</summary>
+          <p>Lukkan on Aluroll Oy:n brändi. Lasitukset valmistetaan Metallikatu 1:ssä Lahdessa. Avainlippu kertoo suomalaisesta työstä; asennuksen tekee paikallinen jälleenmyyjä.</p>
+        </details>
+        <details>
+          <summary>Miten parvekelasitus vaikuttaa energiankulutukseen?</summary>
+          <p>Parvekelasitus muodostaa puskurivyöhykkeen asunnon ja ulkoilman väliin. Tutkitusti lasitus voi pienentää asunnon energiankulutusta noin kuudella prosentilla, ja samalla parveke pysyy puhtaampana.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section-white" id="yhteystiedot">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Tarjouspyyntö</div>
+        <h2 class="section-title">Ota yhteyttä</h2>
+        <p class="section-lead">Kerro terassista tai parvekkeesta, niin ohjaamme pyynnön oikealle jälleenmyyjälle.</p>
+      </div>
+      <div class="contact-section">
+        <form>
+          <div class="form-group">
+            <label for="name">Nimi</label>
+            <input type="text" id="name" name="name" placeholder="Etunimi Sukunimi" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Puhelin</label>
+            <input type="tel" id="phone" name="phone" placeholder="040 123 4567" required>
+          </div>
+          <div class="form-group">
+            <label for="postal">Postinumero</label>
+            <input type="text" id="postal" name="postal" placeholder="15160" required>
+          </div>
+          <div class="form-group">
+            <label for="interest">Kiinnostuksen kohde</label>
+            <select id="interest" name="interest" required>
+              <option value="">Valitse</option>
+              <option value="terrace">Terassi / lasiterassi</option>
+              <option value="balcony">Parveke</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Viesti</label>
+            <textarea id="message" name="message" placeholder="Kerro mitat, käyttötarkoitus ja toivottu aikataulu." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Lähetä tarjouspyyntö</button>
+        </form>
+        <div style="background: var(--navy); color: white; padding: 2rem; border-radius: 1.5rem; height: fit-content;">
+          <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">Tehdas ja myynti</h3>
+          <p style="margin-bottom: 1.5rem;">Valmistus Lahdessa, asennus paikallisen jälleenmyyjän kautta. Jätä tarjouspyyntö, niin ohjaamme sen oikealle alueelle.</p>
+          <p style="font-size: 0.95rem; line-height: 1.8;">
+            <strong>Lukkan (Aluroll Oy)</strong><br>
+            Metallikatu 1<br>
+            15160 Lahti<br>
+            <a href="tel:+358291230221" style="color: #fff;">0291 230 221</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resellers -->
+  <section class="section-white" id="jalleenmyyjat">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Jälleenmyyjät</div>
+        <h2 class="section-title">Lukkan-jälleenmyyjät ympäri Suomea</h2>
+        <p class="section-lead">Hae postinumerolla tai kaupungin nimellä. Paikallinen osaaja mittaa, tarjoaa ja asentaa.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card card-glass">
+          <div class="card-content">
+            <h3>Aki Lasi</h3>
+            <p>Vihiojantie 6, Tampere</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">
+              <a href="tel:+358325499900">03 254 9900</a><br>
+              <a href="mailto:info@aki-lasi.fi">info@aki-lasi.fi</a>
+            </p>
+          </div>
+        </div>
+        <div class="card card-glass">
+          <div class="card-content">
+            <h3>VP Lasitus Oy</h3>
+            <p>Rekolanpohjankatu 1, Lahti</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">
+              <a href="tel:+358375633394">03 756 3394</a><br>
+              <a href="mailto:myynti@lasitus.fi">myynti@lasitus.fi</a>
+            </p>
+          </div>
+        </div>
+        <div class="card card-glass">
+          <div class="card-content">
+            <h3>Oulun Rakennuslasi</h3>
+            <p>Riihiraitti 7, Oulu</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">
+              <a href="tel:+358103226140">010 322 6140</a><br>
+              <a href="mailto:info@lasia.fi">info@lasia.fi</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <p style="text-align: center; margin-top: 3rem; color: var(--muted);">30+ jälleenmyyjää ympäri Suomea. Löydä lähin postinumerolla tai kaupungilla.</p>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section class="section-white" id="blogi">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Blogi</div>
+        <h2 class="section-title">Vinkit terassilasien valintaan</h2>
+        <p class="section-lead">Artikkelit terassilasien valintaan, ostamiseen ja käyttöön.</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="card card-glass">
+          <div class="card-content">
+            <div class="product-category">Valintaopas</div>
+            <h3>Puitteellinen vai puitteeton?</h3>
+            <p>Pystypuite tiivistää, puitteeton avaa näkymän. Näin valitset Aavan, Tyynen tai Termon terassillesi.</p>
+          </div>
+        </div>
+        <div class="card card-glass">
+          <div class="card-content">
+            <div class="product-category">Ostaminen</div>
+            <h3>Näin ostat terassilasituksen</h3>
+            <p>Mittaus, jälleenmyyjä, tarjous ja asennus. Näin Lukkan-lasitus etenee tehtaalta terassille.</p>
+          </div>
+        </div>
+        <div class="card card-glass">
+          <div class="card-content">
+            <div class="product-category">Käyttö</div>
+            <h3>Lasiterassi ympärivuotiseen käyttöön</h3>
+            <p>Kylmä tila, puolilämmin viherhuone vai pelkkä tuulisuoja? Näin lasitus pidentää käyttökuukausia.</p>
+          </div>
+        </div>
+        <div class="card card-glass">
+          <div class="card-content">
+            <div class="product-category">Parveke</div>
+            <h3>Parvekelasitus: energia ja viihtyisyys</h3>
+            <p>Lasitettu parveke on puskurivyöhyke. Se voi pienentää energiankulutusta ja pitää parvekkeen puhtaana.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">Lukkan</h3>
+          <p style="font-size: 0.9rem; line-height: 1.8; opacity: 0.8;">
+            Lukkan (Aluroll Oy)<br>
+            Metallikatu 1<br>
+            15160 Lahti<br>
+            0291 230 221
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Tuotteet</h4>
+          <ul>
+            <li><a href="#tuotteet">Terassilasit</a></li>
+            <li><a href="#tuotteet">Lasiterassit</a></li>
+            <li><a href="#tuotteet">Parvekelasitus</a></li>
+            <li><a href="#tuotteet">Kaiteet</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Palvelu</h4>
+          <ul>
+            <li><a href="#jalleenmyyjat">Jälleenmyyjät</a></li>
+            <li><a href="#blogi">Blogi</a></li>
+            <li><a href="#yhteystiedot">Tarjouspyyntö</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Lukkan (Aluroll Oy). Kaikki oikeudet pidätetään.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Form submission
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      alert(`Kiitos, ${name}! Tarjouspyyntö on vastaanotettu. Palaamme pian yhteyttä.`);
+      this.reset();
+    });
+  </script>
+</body>
+</html>
