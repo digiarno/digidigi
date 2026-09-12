@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #003568;
+  --navy-deep: #012544;
+  --charcoal: #16191e;
+  --ink: #1c1f24;
+  --mist: #f4f5f2;
+  --fog: #e8e9e4;
+  --cta: #9dcf58;
+  --cta-hover: #8cb84e;
+  --accent: #4f79ab;
+  --muted: #5d6168;
+}
+
+@theme inline {
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-charcoal: var(--charcoal);
+  --color-ink: var(--ink);
+  --color-mist: var(--mist);
+  --color-fog: var(--fog);
+  --color-cta: var(--cta);
+  --color-cta-hover: var(--cta-hover);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-plex);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--mist);
+  color: var(--ink);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--cta) 45%, white);
+}
+
+.glass-panel {
+  background: color-mix(in srgb, white 12%, transparent);
+  border: 1px solid color-mix(in srgb, white 18%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.glass-card {
+  background: color-mix(in srgb, white 72%, transparent);
+  border: 1px solid color-mix(in srgb, white 70%, #d5d6d0);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 18px 50px color-mix(in srgb, black 8%, transparent);
+}

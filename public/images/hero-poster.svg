@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1c1f24"/>
+      <stop offset="0.5" stop-color="#003568"/>
+      <stop offset="1" stop-color="#4f79ab"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#9dcf58" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <rect x="0" y="560" width="1200" height="240" fill="#16191e"/>
+  <rect x="90" y="210" width="1020" height="380" rx="8" fill="#0e1218"/>
+  <g fill="url(#glass)" stroke="#ffffff" stroke-opacity="0.35">
+    <rect x="120" y="240" width="220" height="320"/>
+    <rect x="360" y="240" width="220" height="320"/>
+    <rect x="600" y="240" width="220" height="320"/>
+    <rect x="840" y="240" width="220" height="320"/>
+  </g>
+  <rect x="90" y="210" width="1020" height="18" fill="#9dcf58" opacity="0.7"/>
+</svg>
